@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ömer xizm - Profil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+
+    
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -; 
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0,0,0,0.8) 100%);
+            z-index: -1;
+        }
+
+      
+        .profile-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            z-index: 1; 
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-name {
+            font-size: 35px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .business-label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        
+        .sub-profile-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 25px;
+        }
+
+        .avatar-placeholder i {
+            font-size: 45px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .sub-profile-info {
+            text-align: left;
+        }
+
+        .sub-profile-name {
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+        }""
+
+        .sub-profile-status {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        
+        .social-icons-bar {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .social-icons-bar a {
+            font-size: 32px;
+            color: #00ffff;
+            text-decoration: none;
+            transition: 0.3s;
+            filter: drop-shadow(0 0 8px #00ffff);
+        }
+
+        .social-icons-bar a:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 15px #00ffff);
+        }
+
+
+        .music-btn {
+            background: rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+            border: 1px solid #00ffff;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        .music-btn:hover {
+            background: #00ffff;
+            color: #000;
+            box-shadow: 0 0 20px #00ffff;
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+    
+    <div class="overlay"></div>
+
+    <audio id="bg-music" loop>
+        <source src="webste.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="profile-wrapper">
+        <div class="profile-container">
+            <h1 class="profile-name">Ömer xizm</h1>
+            <p class="business-label">“The top or the grave”</p>
+
+            <div class="sub-profile-card">
+                <div class="avatar-placeholder">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="sub-profile-info">
+                    <span class="sub-profile-name">ömer xizm best</span>
+                    <span class="sub-profile-status">last seen unknown</span>
+                </div>
+            </div>
+
+            <div class="social-icons-bar">
+                <a href="https://tiktok.com/@omerxizm" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://t.me/omerxizm" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://wa.me/639631570392" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <button onclick="toggleMusic()" id="music-control" class="music-btn">
+                <i class="fas fa-play"></i> MÜZİĞİ BAŞLAT
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMusic() {
+            var music = document.getElementById("bg-music");
+            var btn = document.getElementById("music-control");
+            
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = '<i class="fas fa-pause"></i> MÜZİĞİ DURDUR';
+                btn.style.boxShadow = "0 0 30px rgba(0, 255, 255, 0.5)";
+            } else {
+                music.pause();
+                btn.innerHTML = '<i class="fas fa-play"></i> MÜZİĞİ BAŞLAT';
+                btn.style.boxShadow = "0 0 10px rgba(0, 255, 255, 0.2)";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
